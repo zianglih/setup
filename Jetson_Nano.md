@@ -1,4 +1,5 @@
 # Jetson Nano
+** For Jetson Nano Developer Kit, not 2GB **
 
 ## General Guide
 *Get Started With Jetson Nano Developer Kit:*  
