@@ -73,20 +73,30 @@ nvcc --version
 ```
 
 ## Nsight Systems & Nsight Compute
-It looks like Nsight Systems and Nsight Compute is not included in SD card image.  
+Nsight Systems and Nsight Compute are not included in SD card image.  
+To install, use Nvidia SDK Manager on a Ubuntu host computer.
 
+### Some useful links:  
+* https://forums.developer.nvidia.com/t/jetson-nano-nsight-systems-target-not-supported/256990
+* https://forums.developer.nvidia.com/t/getting-target-is-not-supported-in-nvidia-nsight-systems-for-tx2/125704
 
-Some useful links:  
-https://forums.developer.nvidia.com/t/jetson-nano-nsight-systems-target-not-supported/256990
+### Alternatively,  use nvprof:
+```bash
+nvprof <EXE>
+```
 
 ## SDK Manager
 https://developer.nvidia.com/sdk-manager  
-Installed on host computer.   
-For Jetson Nano, should use Docker Image Ubuntu 18.04:  
-### Docker image install & run:
+Installed on host computer, or a docker image.   
+Note, on Apple Silicon Mac, this docker image is extremely slow.  
+For Jetson Nano, should use Ubuntu 18.04.   
+### Docker image install:
 ```bash
 wget https://developer.nvidia.com/nvidia-sdk-manager-sdkmanager-docker-image-ubuntu1804
 docker load -i ./sdkmanager-1.9.2.10899-Ubuntu_18.04_docker.tar.gz
 docker tag sdkmanager:1.9.2.10899 sdkmanager:latest
+```
+### Docker image run:
+```bash
 docker run -it --rm sdkmanager --help
 ```
