@@ -53,6 +53,7 @@ cd ../
 ```
 
 ## CUDA
+CUDA is installed but we need to add it to PATH.  
 *Add PATH for CUDA:*  
 https://forums.developer.nvidia.com/t/cuda-nvcc-not-found/118068
 
@@ -66,6 +67,17 @@ $ export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_P
 ```bash
 echo -e "export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}\nexport LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >> ~/.bashrc && source ~/.bashrc
 ```
+### Check version using:
+```bash
+nvcc --version
+```
+
+## Nsight Systems & Nsight Compute
+It looks like Nsight Systems and Nsight Compute is not included in SD card image.  
+
+
+Some useful links:  
+https://forums.developer.nvidia.com/t/jetson-nano-nsight-systems-target-not-supported/256990
 
 ## SDK Manager
 https://developer.nvidia.com/sdk-manager  
