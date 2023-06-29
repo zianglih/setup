@@ -19,6 +19,7 @@ module load gcc openmpi cuda
 ```
 Configure and install:
 ```bash
+./bootstrap.sh
 ./configure --prefix $IPM_INSTALL_DIR
 make -j 32
 make install
