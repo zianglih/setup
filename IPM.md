@@ -1,4 +1,4 @@
-# IPM on HPC
+# IPM
 
 ## Download IPM
 ```bash
@@ -60,7 +60,8 @@ $IPM_INSTALL_DIR/bin/ipm_parse -html $IPM_LOG_DIR/<xmlfile>
 ipm_parse will generate a folder under IPM_LOG_DIR.  
 Navigate to the generated folder and open ```index.html``` with a browser and you can see the report.  
 
-
+## Potential Issues
+- Don't know whether it works if submitted as a job
 
 ## Useful Links
 - https://hpcadvisorycouncil.atlassian.net/wiki/spaces/HPCWORKS/pages/2910060545/Profiling+using+IPM+and+HPC-X
