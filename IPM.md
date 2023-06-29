@@ -1,11 +1,5 @@
 # IPM on HPC
 
-## Useful Links
-- https://hpcadvisorycouncil.atlassian.net/wiki/spaces/HPCWORKS/pages/2910060545/Profiling+using+IPM+and+HPC-X
-- https://ipm-hpc.sourceforge.net/
-- https://ploticus.sourceforge.net/doc/download.html
-- https://github.com/nerscadmin/IPM
-
 ## Download IPM
 ```bash
 git clone https://github.com/nerscadmin/IPM.git
@@ -29,6 +23,12 @@ Configure and install:
 make -j 32
 make install
 ```
+## Configure IPM
+```bash
+export IPM_REPORT=full IPM_LOG=full IPM_LOGDIR=$IPM_LOG_DIR
+export IPM_HPM=PAPI_L1_TCM,PAPI_L2_TCM
+```
+More information on PAPI counter on https://amrex-codes.github.io/amrex/docs_html/External_Profiling_Tools.html#papi-performance-counters
 
 ## Run Profiling
 cd into your desired exec folder.  
@@ -44,13 +44,26 @@ link_cmd+=" -L$IPM_install_dir/lib -lipm"
 rm make.log
 $link_cmd
 ```
-Configure IPM:
-```bash
-export IPM_REPORT=full IPM_LOG=full IPM_LOGDIR=$IPM_LOG_DIR
-```
-Run:
+For CNS, run:
 ```bash
 mpirun -np 2 -x LD_PRELOAD=$IPM_INSTALL_DIR/lib/libipm.so CNS.ex inputs
 ```
 A xml report will be generated under IPM_LOG_DIR.
 ## Parse the Report
+Install ploticus from https://amrex-codes.github.io/amrex/docs_html/External_Profiling_Tools.html#papi-performance-counters  
+mv the ```pl``` executable under ```bin``` to a path where it can be detected.  
+Or simply add its path to ```PATH``` will do.  
+Run to generate html report:
+```bash
+$IPM_INSTALL_DIR/bin/ipm_parse -html $IPM_LOG_DIR/<xmlfile>
+```
+ipm_parse will generate a folder under IPM_LOG_DIR.  
+Navigate to the generated folder and open ```index.html``` with a browser and you can see the report.  
+
+
+
+## Useful Links
+- https://hpcadvisorycouncil.atlassian.net/wiki/spaces/HPCWORKS/pages/2910060545/Profiling+using+IPM+and+HPC-X
+- https://ipm-hpc.sourceforge.net/
+- https://ploticus.sourceforge.net/doc/download.html
+- https://github.com/nerscadmin/IPM
