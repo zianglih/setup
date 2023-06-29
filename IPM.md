@@ -8,8 +8,8 @@ git clone https://github.com/nerscadmin/IPM.git
 ## Define Paths and Variables
 Change this path to your desired install directory and run.
 ```bash
-IPM_INSTALL_DIR=/home/ziangli/IPM_install_dir
-IPM_LOG_DIR=/home/ziangli/IPM_log_dir
+IPM_INSTALL_DIR=</home/ziangli/IPM_install_dir>
+IPM_LOG_DIR=</home/ziangli/IPM_log_dir>
 ```
 
 ## Install IPM
@@ -46,7 +46,7 @@ $link_cmd
 ```
 For CNS, run:
 ```bash
-mpirun -np 2 -x LD_PRELOAD=$IPM_INSTALL_DIR/lib/libipm.so CNS.ex inputs
+mpirun -np 2 -x LD_PRELOAD=$IPM_INSTALL_DIR/lib/libipm.so <CNS.ex> inputs
 ```
 A xml report will be generated under IPM_LOG_DIR.
 ## Parse the Report
