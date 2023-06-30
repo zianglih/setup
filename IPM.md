@@ -21,8 +21,7 @@ Configure and install:
 ```bash
 ./bootstrap.sh
 ./configure --prefix $IPM_INSTALL_DIR
-make -j 32
-make install
+make && make install
 ```
 ## Configure IPM
 ```bash
@@ -39,10 +38,10 @@ For CNS, the link command is exactly the last line of make output so we can use 
 ```bash
 module purge
 module load cuda gcc openmpi
-make > make.log
-link_cmd=$(tail -n 1 make.log)
+make -j 32 > tmp_make.log
+link_cmd=$(tail -n 1 tmp_make.log)
 link_cmd+=" -L$IPM_install_dir/lib -lipm"
-rm make.log
+rm tmp_make.log
 $link_cmd
 ```
 For CNS, run:
