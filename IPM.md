@@ -59,6 +59,30 @@ $IPM_INSTALL_DIR/bin/ipm_parse -html $IPM_LOG_DIR/<xmlfile>
 ipm_parse will generate a folder under IPM_LOG_DIR.  
 Navigate to the generated folder and open ```index.html``` with a browser and you can see the report.  
 
+## Slurm script
+```bash
+#!/bin/bash
+
+#SBATCH --job-name=run_cns_sod
+#SBATCH --time=10:00
+#SBATCH --account=<>
+#SBATCH --partition=gpu
+
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=2
+#SBATCH --mem-per-cpu=8g
+#SBATCH --gpus-per-node=2
+#SBATCH --gpu-bind=closest
+
+module load cuda gcc openmpi
+export IPM_REPORT=full IPM_LOG=full IPM_LOGDIR=/home/ziangli/IPM_log_dir
+mpirun -np 2 -x LD_PRELOAD=/home/ziangli/IPM_install_dir/lib/libipm.so CNS3d.gnu.TPROF.MPI.CUDA.ex inputs
+```
+
+## Issue
+When the linking stage is handled by nvcc, nvcc won't recognize any options inside ```-Xcompiler``` and will fail the linking.   
+The solution is to parse the arguments by double quotes.   
+
 ## Potential Issues
 - Don't know whether it works if submitted as a job
 
