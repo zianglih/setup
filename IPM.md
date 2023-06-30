@@ -39,8 +39,7 @@ For CNS, the link command is exactly the last line of make output so we can use 
 module purge
 module load cuda gcc openmpi
 make -j 32 > tmp_make.log
-link_cmd=$(tail -n 1 tmp_make.log)
-link_cmd+=" -L$IPM_install_dir/lib -lipm"
+link_cmd=$(tail -n 1 tmp_make.log)+" -L$IPM_INSTALL_DIR/lib -lipm"
 rm tmp_make.log
 $link_cmd
 ```
