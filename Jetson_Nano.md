@@ -78,6 +78,12 @@ echo -e "export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}\nexport LD_LIBRARY_PAT
 nvcc --version
 ```
 
+## Fix "Illegal Instruction (core dumped)"
+https://stackoverflow.com/questions/65631801/illegal-instructioncore-dumped-error-on-jetson-nano
+```bash
+echo "export OPENBLAS_CORETYPE=ARMV8" >> ~/.bashrc && source ~/.bashrc
+```
+
 ## Nsight Systems & Nsight Compute
 Nsight Systems and Nsight Compute are not included in SD card image.  
 To install, use Nvidia SDK Manager on a Ubuntu host computer.
