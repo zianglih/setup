@@ -43,6 +43,11 @@ sudo apt-get install python3-pip libopenblas-base libopenmpi-dev libomp-dev
 pip3 install Cython
 pip3 install numpy torch-1.10.0-cp36-cp36m-linux_aarch64.whl
 ```
+### Install pytorch-lightning
+Using ```pip``` or ```pip3``` will not work.
+```bash
+python3 -m pip install pytorch-lightning
+```
 ### Install torchvision:
 ```bash
 sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev libopenblas-dev libavcodec-dev libavformat-dev libswscale-dev
