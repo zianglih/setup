@@ -84,6 +84,29 @@ https://stackoverflow.com/questions/65631801/illegal-instructioncore-dumped-erro
 echo "export OPENBLAS_CORETYPE=ARMV8" >> ~/.bashrc && source ~/.bashrc
 ```
 
+## Change Swap Size
+The following command can be used to check swap size:
+```bash
+free -m
+```
+To change swap size, run the following:
+```bash
+# Disable ZRAM:
+sudo systemctl disable nvzramconfig
+
+# Create 4GB swap file
+sudo fallocate -l 4G /mnt/4GB.swap
+sudo chmod 600 /mnt/4GB.swap
+sudo mkswap /mnt/4GB.swap
+
+# Append the following line to /etc/fstab
+sudo su
+echo "/mnt/4GB.swap swap swap defaults 0 0" >> /etc/fstab
+exit
+
+# REBOOT!
+```
+
 ## Nsight Systems & Nsight Compute
 Nsight Systems and Nsight Compute are not included in SD card image.  
 To install, use Nvidia SDK Manager on a Ubuntu host computer.
