@@ -59,6 +59,17 @@ export BUILD_VERSION=0.11.1
 python3 setup.py install --user
 cd ../
 ```
+## OpenCV
+### Installation Guide
+OpenCV is pre-installed but does not come with CUDA support. \
+To install OpenCV with CUDA support, refer to the compiling source part in the following installation guide: \
+https://qengineering.eu/install-opencv-on-jetson-nano.html
+### Check CUDA Availability
+```python
+import cv2
+print(cv2.__version__)
+print(cv2.cuda.getCudaEnabledDeviceCount())
+```
 
 ## CUDA
 CUDA is installed but we need to add it to PATH.  
