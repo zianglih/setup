@@ -17,17 +17,18 @@ ssh ziangli@192.168.55.1
 ```bash
 sudo screen $(ls /dev/cu.usbmodem*)
 ```
-
-## Useful Things To Do
-### Set the default python to python3:
+### File Transfer:
+https://forums.developer.nvidia.com/t/transferring-files-from-pc-to-jetson-nano/172800
 ```bash
-echo "alias python=python3" >> ~/.bashrc && source ~/.bashrc
+scp <FILE> ziangli@192.168.55.1:/home/ziangli
 ```
-### Install jtop:
+
+## jtop
 ```bash
 sudo pip3 install -U jetson-stats
 jtop
 ```
+May need to use ```sudo``` on initial run.
 
 
 ## PyTorch
@@ -58,6 +59,22 @@ cd torchvision
 export BUILD_VERSION=0.11.1
 python3 setup.py install --user
 cd ../
+```
+### Verification
+```python
+import torch
+print(torch.__version__)
+print('CUDA available: ' + str(torch.cuda.is_available()))
+print('cuDNN version: ' + str(torch.backends.cudnn.version()))
+a = torch.cuda.FloatTensor(2).zero_()
+print('Tensor a = ' + str(a))
+b = torch.randn(2).cuda()
+print('Tensor b = ' + str(b))
+c = a + b
+print('Tensor c = ' + str(c))
+
+import torchvision
+print(torchvision.__version__)
 ```
 ## OpenCV
 ### Installation Guide
@@ -121,8 +138,16 @@ exit
 ```
 
 ## Nsight Systems & Nsight Compute
-Nsight Systems and Nsight Compute are not included in SD card image.  
-To install, use Nvidia SDK Manager on a Ubuntu host computer.
+### Installation
+Nsight Systems is not included in SD card image. \
+To install, use Nvidia SDK Manager on a Ubuntu host computer. \
+Note this will remove all the data. \
+Nsight Compute is not supported.
+
+### Profiling Command
+```bash
+nsys profile --trace=cuda,osrt,cudnn --cudabacktrace=all --cuda-memory-usage=true <EXE>
+```
 
 ### Some useful links:  
 * https://forums.developer.nvidia.com/t/jetson-nano-nsight-systems-target-not-supported/256990
